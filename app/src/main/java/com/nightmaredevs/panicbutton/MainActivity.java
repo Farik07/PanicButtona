@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity  {
         }
     }
 
-    private void trackubication(){
+    private void tracklocation(){
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         verifyPermission();
-        trackubication();
+        tracklocation();
 
     }
 }
