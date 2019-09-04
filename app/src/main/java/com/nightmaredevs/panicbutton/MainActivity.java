@@ -9,12 +9,14 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity  {
+    TextView textView;
 
     private FusedLocationProviderClient fusedLocationClient;
 
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity  {
     }
 
     private void tracklocation(){
+        textView = (TextView)findViewById(R.id.textView);
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         fusedLocationClient.getLastLocation()
                 .addOnSuccessListener(this, new OnSuccessListener<Location>() {
@@ -34,8 +37,7 @@ public class MainActivity extends AppCompatActivity  {
                     public void onSuccess(Location location) {
                         // Got last known location. In some rare situations this can be null.
                         if (location != null) {
-                            Log.e("Latitud",+location.getLatitude()+"Longitud"+location.getLongitude());
-                            // Logic to handle location object
+                           textView.setText("Latitud "+location.getLatitude()+"  Longitud "+location.getLongitude());
                         }
                     }
                 });
